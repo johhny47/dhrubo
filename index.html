@@ -2,588 +2,368 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Dhrubo</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-    
-    <style>
-        body {
-            padding: 0 1rem;
-            background-color: #F4F7FE;
-            font-family: poppins;
-            height: 998px;
-            width: 1481px;
-            /* border: 2px solid #ffffff; */
-            margin: auto;
-            display: flex;
-        }
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dhrubo Dashboard</title>
+  <style>
+    .sidebar {
+      width: 280px;
+      height: 100vh;
+      position: fixed;
+      top: 0px;
+      left: 0;
+      background-color: #ffffff;
+      padding-top: 60px;
+      transition: all 0.3s ease;
+      transform: translateX(-100%);
+    }
 
-        /* sidebar */
-        .sidebar {
-            width: 280px;
-            height: 990px;
-            background-color: #ffffff;
-            box-shadow: 0 0 10px rgba(155, 152, 154, 0.951);
-            padding: 1rem;
+    .sidebar.open {
+      transform: translateX(0);
+    }
 
-        }
+    .close-btn {
+      position: absolute;
+      top: 0px;
+      left: 5px;
+      background: none;
+      border: none;
+      font-size: 30px;
+      color: #6c757d;
+      cursor: pointer;
+    }
 
-        .searchbar {
-            height: 36px;
-            width: 210px;
-            border-radius: 20px;
-            background-color: #F4F7FE;
-            display: flex;
-            align-items: center;
-        }
+    .hamburger-btn {
+      background: none;
+      border: none;
+      font-size: 30px;
+      color: #6c757d;
+      cursor: pointer;
+    }
 
-        .searchbar input {
-            font-size: 14px;
-            border: none;
-            outline: none;
-            background: transparent;
-            flex-grow: 1;
-            padding-left: 10px;
-        }
+    /* hide sidebar when not open */
+    .sidebar.collapsed {
+      display: none;
+    }
+  </style>
 
-        .searchbar i {
-            font-size: 14px;
-            color: #757575;
-        }
-
-        .nav-link,
-        .dropdown-item {
-            color: #757575;
-        }
-
-        .nav-link:hover,
-        .dropdown-item:hover {
-            color: #000000;
-        }
-
-        .settings {
-            margin-top: 180px;
-        }
-
-        .logoutContainer {
-            margin-top: 200px;
-        }
-
-        .content {
-            margin-left: 30px;
-            padding: 0 1rem;
-            /* border: 2px solid #ffffff; */
-            height: 990px;
-            width: 1150px;
-        }
-
-        .gradient-text {
-            font-size: 3rem;
-            font-weight: bold;
-            background-image: linear-gradient(to right, #ff7e5f, #ca956c);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            display: inline-flex;
-            align-items: center;
-        }
-
-        /* Circle Style */
-        .circle {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            border: 5px solid #d46749;
-            background-color: #fcfcfc;
-            margin-right: 10px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        /* container  */
-        .container {
-            display: flex;
-            flex-direction: column;
-        }
-
-        /* Navbar */
-        .navbar {
-            height: 60px;
-            width: 1070px;
-            background-color: #ffffff;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 1rem;
-            border-bottom: 1px solid #4fde23;
-            margin-left: 58px;
-
-        }
-
-        .name {
-
-            font-weight: 600;
-            font-size: 18px;
-            color: #333333;
-
-
-        }
-
-        .search_container {
-            height: 36px;
-            width: 400px;
-            border-radius: 20px;
-            background-color: #ffffff;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            color: #757575;
-            margin-left: 60px;
-        }
-
-        .searchbar {
-            height: 36px;
-            width: 210px;
-            border-radius: 20px;
-            background-color: #F4F7FE;
-            display: flex;
-            align-items: center;
-            padding-left: 10px;
-        }
-
-        .searchbar input {
-            font-size: 14px;
-            border: none;
-            outline: none;
-            background: transparent;
-            flex-grow: 1;
-            padding-left: 10px;
-        }
-
-        .searchbar i {
-            font-size: 18px;
-            color: #757575;
-        }
-
-        .icon-container {
-            display: flex;
-            gap: 20px;
-            font-size: 18px;
-            color: #757575;
-            padding-right: 10px;
-        }
-
-        /* For responsiveness, make the searchbar smaller on mobile */
-        @media (max-width: 768px) {
-            .navbar {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            .searchbar {
-                width: 100%;
-                margin-top: 10px;
-            }
-        }
-
-        /* dashboard */
-        .dashboard {
-            margin-left: 58px;
-            margin-top: 20px;
-            padding: 1rem;
-            background-color: #ffffff;
-
-            height: 900px;
-            width: 1070px;
-        }
-
-        .project_summary {
-            margin-top: 20px;
-            height: 400px;
-            width: 1040px;
-            background-color: #F4F7FE;
-            border-radius: 10px;
-        }
-
-        /* Custom active tab style with blue underline */
-        .nav-pills .nav-link.active {
-            background-color: transparent;
-            border-color: transparent;
-            border-bottom: 3px solid #007bff;
-            color: #007bff;
-
-        }
-
-        .tab-content .tab-pane {
-            display: none;
-            /* Initially hide all tab content */
-        }
-
-        .tab-content .tab-pane.active {
-            display: block;
-            /* Show active tab content */
-        }
-
-
-        /* Remove bottom_border for non-active links */
-        .nav-pills .nav-link {
-            border-bottom: none;
-        }
-
-        .progress-bar {
-            height: 20px;
-        }
-
-        /* Table layout */
-        .project-table {
-            margin-top: 20px;
-            width: 100%;
-            table-layout: fixed;
-        }
-
-        /* Set widths of columns */
-        .project-table th,
-        .project-table td {
-            width: 20%;
-            text-align: center;
-        }
-
-        /* Container for scrollable tbody */
-        .scroll-container {
-            height: 300px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .scroll-content {
-            overflow-y: scroll;
-            max-height: 300px;
-            padding-right: 12px;
-        }
-
-        /* header and body alignment */
-        .project-table thead,
-        .project-table tbody tr {
-            display: table;
-            width: 100%;
-            table-layout: fixed;
-        }
-
-        .project-table thead th {
-            position: sticky;
-            top: 0;
-            background: #fff;
-            z-index: 1;
-        }
-
-        /* Custom scrollbar style */
-        .scroll-content::-webkit-scrollbar {
-            width: 12px;
-        }
-
-        .scroll-content::-webkit-scrollbar-thumb {
-            background-color: #007bff;
-            border-radius: 10px;
-        }
-
-        .scroll-content::-webkit-scrollbar-track {
-            background-color: #f1f1f1;
-        }
-    </style>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 </head>
 
-<body>
-    <!-- sidebar  -->
-    <div class="sidebar">
-        <!-- logo -->
-        <div>
-            <!-- circle logo -->
-            <div class="fs-3 fw-bold gradient-text">
-                <span class="circle"></span>Dhrubo
-            </div>
-            <!-- search bar  -->
-            <div class="container p-0 my-4">
-                <!-- Search Bar with Icon  -->
-                <div class="searchbar">
-                    <!-- Search Icon -->
-                    <i class="bi bi-search px-2"></i>
-                    <!-- Input Field -->
-                    <input type="text" placeholder="Search instances">
-                </div>
-            </div>
+<body class="bg-light d-flex">
+
+  <!-- Sidebar -->
+  <aside class="d-flex d-none d-md-flex flex-column flex-shrink-0 p-3 bg-white shadow "
+    style="width: 280px; min-height: 100vh;">
+    <div class="d-flex align-items-center mb-4">
+      <div class="rounded-circle border border-4 border-warning d-flex align-items-center justify-content-center me-2"
+        style="width: 10px; height:10px;"></div>
+      <h3 class="fw-bold text-warning mb-0">Dhrubo</h3>
+    </div>
+
+    <!-- Search -->
+    <div class="input-group mb-4">
+      <span class="input-group-text bg-light border-0"><i class="bi bi-search text-muted"></i></span>
+      <input type="text" class="form-control border-0 bg-light" placeholder="Search instances">
+    </div>
+
+    <!-- Nav -->
+    <ul class="nav nav-pills flex-column mb-auto">
+      <li class="nav-item"><a href="#" class="nav-link text-secondary"><i class="bi bi-house-door"></i> Dashboard</a>
+      </li>
+      <li><a href="#" class="nav-link text-secondary"><i class="bi bi-person-lines-fill"></i> Contact</a></li>
+      <li><a href="#" class="nav-link text-secondary"><i class="bi bi-file-earmark-text"></i> Invoice</a></li>
+      <li><a href="#" class="nav-link text-secondary"><i class="bi bi-bar-chart-line"></i> Sales</a></li>
+      <li><a href="#" class="nav-link text-secondary"><i class="bi bi-file-earmark-earbuds"></i> Proposal</a></li>
+
+      <!-- Dropdown -->
+      <li class="nav-item dropdown">
+        <a href="#" class="nav-link dropdown-toggle text-secondary" data-bs-toggle="dropdown">
+          <i class="bi bi-wallet"></i> Incomes
+        </a>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="#"><i class="bi bi-cash-coin"></i> Earnings</a></li>
+          <li><a class="dropdown-item" href="#"><i class="bi bi-arrow-return-left"></i> Refunds</a></li>
+          <li><a class="dropdown-item" href="#"><i class="bi bi-person-x"></i> Declients</a></li>
+          <li><a class="dropdown-item" href="#"><i class="bi bi-wallet2"></i> Payouts</a></li>
+        </ul>
+      </li>
+    </ul>
+
+    <!-- Settings -->
+    <div class="mt-5">
+      <small class="text-uppercase text-muted fw-bold">Settings</small>
+      <div class="dropdown mt-2">
+        <a href="#" class="nav-link dropdown-toggle text-secondary" data-bs-toggle="dropdown">
+          <i class="bi bi-gear"></i> Setting
+        </a>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="#"><i class="bi bi-pencil-square"></i> Update</a></li>
+          <li><a class="dropdown-item" href="#"><i class="bi bi-trash"></i> Delete</a></li>
+          <li><a class="dropdown-item" href="#"><i class="bi bi-shield-lock"></i> Security</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Help & Logout -->
+    <div class="mt-auto pt-4">
+      <a href="#" class="nav-link text-secondary"><i class="bi bi-question-circle"></i> Help</a>
+      <a href="#" class="nav-link text-danger"><i class="bi bi-box-arrow-right"></i> Logout</a>
+    </div>
+  </aside>
+
+
+
+  <!-- Main Content -->
+  <main class="flex-grow-1">
+    <!-- Navbar -->
+    <nav class=" navbar-expand bg-white shadow-sm p-md-3 pl-md-4">
+      <div class="container-fluid justify-content-between d-none d-md-flex">
+        <span class="fw-bold fs-5">Crescent Agro Industries</span>
+        <div class="d-flex align-items-center gap-3">
+          <div class="input-group">
+            <span class="input-group-text bg-light border-0"><i class="bi bi-search text-muted"></i></span>
+            <input type="text" class="form-control border-0 bg-light" placeholder="Search">
+          </div>
+          <i class="bi bi-bell"></i>
+          <i class="bi bi-file-earmark-text"></i>
+          <i class="bi bi-calendar"></i>
+          <img src="https://i.ibb.co.com/rFkSttj/Screenshot-2024-07-07-111320.png" class="rounded-circle" width="40"
+            height="40" alt="Profile">
         </div>
-        <ul class="nav flex-column">
+      </div>
+    </nav>
+    <!-- Nav for small screens -->
+    <nav class="navbar navbar-expand bg-white shadow-sm  px-4 d-md-none d-flex justify-content-between">
+
+
+
+      <!-- Sidebar for small screen -->
+      <div class="sidebar" id="sidebar">
+
+        <!-- Close Button -->
+        <button class="close-btn" id="close-btn" onclick="toggleSidebar()">
+          <i class="bi bi-x-circle"></i>
+        </button>
+
+        <div class="sidebar-header d-flex align-items-center ms-3">
+          <!-- Logo and Name -->
+        </div>
+
+        <!-- Sidebar Menu -->
+        <div>
+          <div class="container p-0 my-2">
+            <!-- Search Bar with Icon  -->
+            <div class="searchbar">
+              <i class="bi bi-search px-2"></i>
+              <input type="text" placeholder="Search instances">
+            </div>
+          </div>
+          <ul class="nav flex-column">
             <li class="nav-item">
-                <a class="nav-link " href="#">
-                    <i class="bi bi-house-door"></i> Dashboard
-                </a>
+              <a class="nav-link " href="#">
+                <i class="bi bi-house-door"></i> Dashboard
+              </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link " href="#">
-                    <i class="bi bi-person-lines-fill"></i> Contact
-                </a>
+              <a class="nav-link " href="#">
+                <i class="bi bi-person-lines-fill"></i> Contact
+              </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link " href="#">
-                    <i class="bi bi-file-earmark-text"></i> Invoice
-                </a>
+              <a class="nav-link " href="#">
+                <i class="bi bi-file-earmark-text"></i> Invoice
+              </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link " href="#">
-                    <i class="bi bi-bar-chart-line"></i> Sales
-                </a>
+              <a class="nav-link " href="#">
+                <i class="bi bi-bar-chart-line"></i> Sales
+              </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link " href="#">
-                    <i class="bi bi-file-earmark-earbuds"></i> Proposal
-                </a>
+              <a class="nav-link " href="#">
+                <i class="bi bi-file-earmark-earbuds"></i> Proposal
+              </a>
             </li>
 
             <!-- dropdown menu -->
-           <div class="dropdown">
-    <a class="dropdown-toggle nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-        <i class="bi bi-wallet"></i> Incomes
-    </a>
-    <ul class="dropdown-menu">
-        <li><a class="dropdown-item" href="#"><i class="bi bi-cash-coin"></i> Earnings</a></li>
-        <li><a class="dropdown-item" href="#"><i class="bi bi-arrow-return-left"></i> Refunds</a></li>
-        <li><a class="dropdown-item" href="#"><i class="bi bi-person-x"></i> Declients</a></li>
-        <li><a class="dropdown-item" href="#"><i class="bi bi-wallet2"></i> Payouts</a></li>
-    </ul>
-</div>
-
+            <div class="dropdown">
+              <a class="dropdown-toggle nav-link" href="#" role="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                <i class="bi bi-wallet"></i> Incomes
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#"><i class="bi bi-cash-coin"></i> Earnings</a></li>
+                <li><a class="dropdown-item" href="#"><i class="bi bi-arrow-return-left"></i> Refunds</a></li>
+                <li><a class="dropdown-item" href="#"><i class="bi bi-person-x"></i> Declients</a></li>
+                <li><a class="dropdown-item" href="#"><i class="bi bi-wallet2"></i> Payouts</a></li>
+              </ul>
+            </div>
 
             <!-- settings -->
             <div class="settings ml-3">
-                <h6 style="text-transform: uppercase; font-size: 10px;">settings</h6>
-                <!-- setting dropdown menu -->
-                <div class="dropdown">
-                    <a class="dropdown-toggle nav-link" href="#" role="button" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                        <i class="bi bi-gear"></i> Setting
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#"><i class="bi bi-pencil-square"></i> Update</a></li>
-                        <li><a class="dropdown-item" href="#"><i class="bi bi-trash"></i> Delete</a></li>
-                        <li><a class="dropdown-item" href="#"><i class="bi bi-shield-lock"></i> Security</a></li>
-                    </ul>
-                </div>
+              <h6 style="text-transform: uppercase; font-size: 10px;">settings</h6>
+              <!-- setting dropdown menu -->
+              <div class="dropdown">
+                <a class="dropdown-toggle nav-link" href="#" role="button" data-bs-toggle="dropdown"
+                  aria-expanded="false">
+                  <i class="bi bi-gear"></i> Setting
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#"><i class="bi bi-pencil-square"></i> Update</a></li>
+                  <li><a class="dropdown-item" href="#"><i class="bi bi-trash"></i> Delete</a></li>
+                  <li><a class="dropdown-item" href="#"><i class="bi bi-shield-lock"></i> Security</a></li>
+                </ul>
+              </div>
             </div>
 
             <!-- help and logout -->
             <div class="logoutContainer">
-                <a class="nav-link mt-4" href="#"><i class="bi bi-question-circle"></i> Help</a>
-                <a class="nav-link" style="color:#da3b3b" href="#"><i class="bi bi-box-arrow-right"></i> Logout
-                    Account</a>
+              <a class="nav-link mt-4" href="#"><i class="bi bi-question-circle"></i> Help</a>
+              <a class="nav-link" style="color:#da3b3b" href="#"><i class="bi bi-box-arrow-right"></i> Logout
+                Account</a>
             </div>
+          </ul>
+        </div>
+      </div>
+
+
+
+
+
+      <!-- Logo -->
+      <div class="d-flex align-items-center ">
+        <!-- Hamburger Button -->
+        <button class="hamburger-btn px-2" id="hamburger-btn" onclick="toggleSidebar()">
+          <i class="bi bi-list"></i>
+        </button>
+        <div class="rounded-circle border border-4 border-warning d-flex align-items-center justify-content-center me-2"
+          style="width: 30px; height: 30px;"></div>
+        <h3 class="fw-bold text-warning mb-0">Dhrubo</h3>
+      </div>
+
+      <!-- Profile -->
+      <div>
+        <img src="https://i.ibb.co/rFkSttj/Screenshot-2024-07-07-111320.png" class="rounded-circle" width="40"
+          height="40" alt="Profile">
+      </div>
+
+    </nav>
+
+
+
+    <!-- Dashboard Section -->
+    <section class="p-4">
+      <h2 class="fw-bold text-secondary mb-4">Dashboard</h2>
+
+      <!-- Project Summary -->
+      <div class="bg-white rounded shadow-sm p-4 mb-4">
+        <h5 class="fw-semibold text-muted mb-3">Project Summary</h5>
+
+        <ul class="nav nav-pills mb-3" id="projectTab" role="tablist">
+          <li class="nav-item"><a class="nav-link active" data-bs-toggle="pill" href="#ongoing">Ongoing</a></li>
+          <li class="nav-item"><a class="nav-link" data-bs-toggle="pill" href="#finished">Finished</a></li>
+          <li class="nav-item"><a class="nav-link" data-bs-toggle="pill" href="#onhold">On Hold</a></li>
+          <li class="nav-item"><a class="nav-link" data-bs-toggle="pill" href="#notstarted">Not Started</a></li>
+          <li class="nav-item"><a class="nav-link" data-bs-toggle="pill" href="#cancelled">Cancelled</a></li>
         </ul>
-    </div>
 
-    <div class="container">
-        <!-- navbar -->
-        <div class="navbar">
-            <!-- company name  -->
-            <div class="name">
-                Crescent Agro Industries
-            </div>
+        <div class="tab-content">
+          <!-- Ongoing -->
+          <div class="tab-pane fade show active" id="ongoing">
+            <table class="table table-bordered align-middle text-center">
+              <thead class="table-light">
+                <tr>
+                  <th>Project Name</th>
+                  <th>Project Type</th>
+                  <th>Start Date</th>
+                  <th>End Date</th>
+                  <th>Progress</th>
+                </tr>
+              </thead>
+              <tbody id="ongoingProjects"></tbody>
+            </table>
+          </div>
 
-            <!-- search bar -->
-            <div class="search_container">
-                <div class="search">
-                    <div class="searchbar">
-                        <!-- Search Icon -->
-                        <i class="bi bi-search"></i>
-                        <!-- Input Field -->
-                        <input type="text" placeholder="Search">
-                    </div>
-                </div>
-                <!-- Icons -->
-                <div class="icon-container">
-                    <!-- Notification Icon -->
-                    <i class="bi bi-bell"></i>
-                    <i class="bi bi-file-earmark-text"></i>
-                    <!-- Calendar Icon -->
-                    <i class="bi bi-calendar"></i>
-                </div>
-                <div>
-                    <div class="profile d-flex align-items-center">
-                        <img src="https://i.ibb.co.com/rFkSttj/Screenshot-2024-07-07-111320.png" alt="Profile Picture"
-                            class="rounded-circle me-2" width="40" height="40">
-
-                    </div>
-                </div>
-
-            </div>
+          <div class="tab-pane fade" id="finished">
+            <p class="text-center text-muted">Finished Projects</p>
+          </div>
+          <div class="tab-pane fade" id="onhold">
+            <p class="text-center text-muted">On Hold Projects</p>
+          </div>
+          <div class="tab-pane fade" id="notstarted">
+            <p class="text-center text-muted">Not Started Projects</p>
+          </div>
+          <div class="tab-pane fade" id="cancelled">
+            <p class="text-center text-muted">Cancelled Projects</p>
+          </div>
         </div>
-        <!-- Dashboard -->
-        <div class="dashboard">
-            <h2 style="font-size:36px; font-weight:bold; color: #757575;">Dasboard</h2>
-            <!-- project summary -->
-            <div class="project_summary">
-                <h2 style="font-size:20px; font-weight: 800; color: #757575; padding: 1rem;">Project Summary</h2>
-                <!-- project table -->
-                <div >
+      </div>
 
-
-                    <ul class="nav nav-pills mb-3" id="projectTab" role="tablist">
-                        <li class="nav-item" role="presentation">
-                            <a class="nav-link active" id="ongoing-tab" data-toggle="pill" href="#ongoing" role="tab"
-                                aria-controls="ongoing" aria-selected="true">On Going</a>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <a class="nav-link" id="finished-tab" data-toggle="pill" href="#finished" role="tab"
-                                aria-controls="finished" aria-selected="false">Finished</a>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <a class="nav-link" id="onhold-tab" data-toggle="pill" href="#onhold" role="tab"
-                                aria-controls="onhold" aria-selected="false">On Hold</a>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <a class="nav-link" id="notstarted-tab" data-toggle="pill" href="#notstarted" role="tab"
-                                aria-controls="notstarted" aria-selected="false">Not Started</a>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <a class="nav-link" id="cancelled-tab" data-toggle="pill" href="#cancelled" role="tab"
-                                aria-controls="cancelled" aria-selected="false">Cancelled</a>
-                        </li>
-                    </ul>
-
-                    <div class="tab-content" id="projectTabContent">
-                        <!-- On Going Projects -->
-                        <div class="tab-pane fade show active" id="ongoing" role="tabpanel"
-                            aria-labelledby="ongoing-tab">
-                            <div class="scroll-container">
-                                <div class="scroll-content">
-                                    <table class="table table-bordered project-table">
-                                        <thead>
-                                            <tr>
-                                                <th>Project Name</th>
-                                                <th>Project Type</th>
-                                                <th>Start Date</th>
-                                                <th>End Date</th>
-                                                <th>Project Progress</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="ongoingProjects">
-                                            <!-- ongoing data show dynamicly -->
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Other tabs data -->
-
-                        <div class="tab-pane fade show active" id="finished">
-                            <h1>finished</h1>
-                        </div>
-
-                        <div class="tab-pane fade show active" id="onhold">
-                            <h1>onhold</h1>
-                        </div>
-                        <div class="tab-pane fade show active" id="notstarted">
-                            <h1>notstarted</h1>
-                        </div>
-                        <div class="tab-pane fade show active" id="cancelled">
-                            <h1>cancelled</h1>
-                        </div>
-
-
-                    </div>
-                </div>
+      <!-- Quick Invoice -->
+      <div class="bg-white rounded shadow-sm p-4">
+        <h5 class="fw-semibold text-muted mb-3">Quick Invoice Info</h5>
+        <div class="row g-3">
+          <div class="col-md-6">
+            <div class="bg-light rounded p-2 h-100">
+              <img src="https://i.ibb.co.com/TDgpCzn3/Screenshot-2025-11-04-132605.png" class="w-100 h-100 rounded"
+                alt="Bar Chart">
             </div>
-            <!-- Quick invice info section -->
-            <div class="invoice_info"
-                style="margin-top:40px; height:364px; width:1040px; background-color:#F4F7FE; border-radius:10px; padding:1rem;">
-                <h2 style="font-size:20px; font-weight:bold; color: #757575; margin-top:2px;">Quick Invoice Info</h2>
-                <div style="height:330px; width:1000px; display: flex; justify-content: space-between; margin-top:2px;">
-                    <!-- barchart -->
-                    <div class="bar_chart"
-                        style="width: 45%; height:300px;  background-color:#ffffff; border-radius: 12px; padding-bottom: 4px;">
-                        <img src="https://i.ibb.co.com/TDgpCzn3/Screenshot-2025-11-04-132605.png" alt="Example Image"
-                            style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px;">
-                    </div>
-
-                    <!-- graph chart -->
-                    <div class="graph_chart"
-                        style="width: 47%; height:300px; background-color:#ffffff; border-radius: 12px; padding-bottom: 4px;">
-                        <img src="https://i.ibb.co.com/6cLyBfBd/Screenshot-2025-11-04-132618.png" alt="Graph Image"
-                            style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px;">
-                    </div>
-                </div>
+          </div>
+          <div class="col-md-6">
+            <div class="bg-light rounded p-2 h-100">
+              <img src="https://i.ibb.co.com/6cLyBfBd/Screenshot-2025-11-04-132618.png" class="w-100 h-100 rounded"
+                alt="Graph Chart">
             </div>
-
+          </div>
         </div>
+      </div>
+    </section>
+  </main>
 
-    </div>
-
-<!-- Bootstrap Bundle with Popper -->
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz4fnFO9gybp3sX8k2byC3gq5fFS55Y3u1ghgWYoTkRU9s6W2o1YF1oF6y" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js" integrity="sha384-cuQ1t8hlUw6U1fGfnjy6o73o8xhb+o0r5p6l7F6rx5PhV6YrGGwvrtD7LxsugZRd" crossorigin="anonymous"></script>
-
-
-
-    <script>
-
-        const projects = [
-            { name: 'Upod-Podcast app', type: 'Mobile App', startDate: 'Nov 04, 2023', endDate: 'Nov 04, 2023', progress: 25 },
-            { name: 'Upod-Podcast app', type: 'Mobile App', startDate: 'Nov 04, 2023', endDate: 'Nov 04, 2023', progress: 25 },
-            { name: 'Upod-Podcast app', type: 'Mobile App', startDate: 'Nov 04, 2023', endDate: 'Nov 04, 2023', progress: 25 },
-            { name: 'Upod-Podcast app', type: 'Mobile App', startDate: 'Nov 04, 2023', endDate: 'Nov 04, 2023', progress: 50 },
-            { name: 'Upod-Podcast app', type: 'Mobile App', startDate: 'Nov 04, 2023', endDate: 'Nov 04, 2023', progress: 75 },
-            { name: 'Upod-Podcast app', type: 'Mobile App', startDate: 'Nov 04, 2023', endDate: 'Nov 04, 2023', progress: 100 },
-            { name: 'Upod-Podcast app', type: 'Mobile App', startDate: 'Nov 04, 2023', endDate: 'Nov 04, 2023', progress: 25 },
-            { name: 'Upod-Podcast app', type: 'Mobile App', startDate: 'Nov 04, 2023', endDate: 'Nov 04, 2023', progress: 25 },
-            { name: 'Upod-Podcast app', type: 'Mobile App', startDate: 'Nov 04, 2023', endDate: 'Nov 04, 2023', progress: 25 },
-            { name: 'Upod-Podcast app', type: 'Mobile App', startDate: 'Nov 04, 2023', endDate: 'Nov 04, 2023', progress: 50 },
-            { name: 'Upod-Podcast app', type: 'Mobile App', startDate: 'Nov 04, 2023', endDate: 'Nov 04, 2023', progress: 75 },
-            { name: 'Upod-Podcast app', type: 'Mobile App', startDate: 'Nov 04, 2023', endDate: 'Nov 04, 2023', progress: 100 }
-        ];
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Bootstrap JS and Dependencies -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
 
-        function generateTableRows() {
-            const tableBody = document.getElementById('ongoingProjects');
-            tableBody.innerHTML = '';
+  <script>
 
-            projects.forEach(project => {
-                const row = document.createElement('tr');
-                row.innerHTML = `
-        <td class="project-row"><img src="https://i.pravatar.cc/30?img=3" alt="Avatar"> ${project.name}</td>
-        <td>${project.type}</td>
-        <td>${project.startDate}</td>
-        <td>${project.endDate}</td>
-        <td><div class="progress"><div class="progress-bar bg-primary" style="width: ${project.progress}% ; height:25px"></div></div></td>
-      `;
-                tableBody.appendChild(row);
-            });
-        }
+    const projects = [
+      { name: 'Upod Podcast App', type: 'Mobile App', startDate: 'Nov 04, 2023', endDate: 'Nov 04, 2023', progress: 25 },
+      { name: 'Agro CRM', type: 'Web App', startDate: 'Dec 01, 2023', endDate: 'Jan 15, 2024', progress: 75 },
+      { name: 'Crescent Portal', type: 'Web Platform', startDate: 'Jan 05, 2024', endDate: 'Apr 10, 2024', progress: 50 }
+    ];
 
-        generateTableRows();
+    const tbody = document.getElementById('ongoingProjects');
+    projects.forEach(p => {
+      tbody.innerHTML += `
+        <tr>
+          <td><img src="https://i.pravatar.cc/30?img=3" class="me-2  rounded-circle"> ${p.name}</td>
+          <td>${p.type}</td>
+          <td>${p.startDate}</td>
+          <td>${p.endDate}</td>
+          <td>
+            <div class="progress" style="height:20px;">
+              <div class="progress-bar bg-primary" style="width:${p.progress}%">${p.progress}%</div>
+            </div>
+          </td>
+        </tr>`;
+    });
 
+    function toggleSidebar() {
+      const sidebar = document.getElementById('sidebar');
+      const hamburgerBtn = document.getElementById('hamburger-btn');
+      const closeBtn = document.getElementById('close-btn');
 
-        const tabs = document.querySelectorAll('.nav-link');
-        tabs.forEach(tab => {
-            tab.addEventListener('click', function (event) {
-                // Remove active class from all tabs
-                tabs.forEach(t => t.classList.remove('active'));
-                // Add active class to the clicked tab
-                event.target.classList.add('active');
-
-                // Hide all tab content
-                const tabContents = document.querySelectorAll('.tab-pane');
-                tabContents.forEach(content => content.classList.remove('show', 'active'));
-
-                // Show the content of the clicked tab
-                const targetTabContent = document.querySelector(event.target.getAttribute('href'));
-                targetTabContent.classList.add('show', 'active');
-            });
-        });
-    </script>
-    
+      sidebar.classList.toggle('open'); 
+      hamburgerBtn.classList.toggle('d-none'); 
+      closeBtn.classList.toggle('d-flex'); 
+    }
+  </script>
 </body>
+
 </html>
