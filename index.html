@@ -82,13 +82,17 @@
         </div>
 
         <!-- Search -->
-        <div class="input-group mb-4">
-            <span class="input-group-text bg-light border-0"><i class="bi bi-search text-muted"></i></span>
-            <input type="text" class="form-control border-0 bg-light" placeholder="Search instances">
+
+        <div class="position-relative ms-3 mt-3" style="width:210px ;">
+            <i class="bi bi-search text-muted position-absolute top-50 start-0 translate-middle-y ms-4"></i>
+
+            <input type="text" class="form-control ps-5 bg-light border-0 rounded
+                  focus-ring focus-ring-primary rounded-pill" style="height:36px ;" placeholder="Search">
         </div>
 
+
         <!-- Nav -->
-        <ul class="nav nav-pills flex-column mb-auto">
+        <ul class="nav nav-pills flex-column mb-auto mt-3">
             <li class="nav-item"><a href="#" class="nav-link text-secondary"><i class="bi bi-house-door"></i>
                     Dashboard</a>
             </li>
@@ -146,7 +150,7 @@
                     <div class="position-relative ms-3">
                         <i class="bi bi-search text-muted position-absolute top-50 start-0 translate-middle-y ms-4"></i>
 
-                        <input type="text" class="form-control ps-5 bg-light border-0 rounded 
+                        <input type="text" class="form-control ps-5 bg-light border-0 rounded
                   focus-ring focus-ring-primary rounded-pill" placeholder="Search">
                     </div>
 
@@ -160,101 +164,71 @@
             </div>
         </nav>
         <!-- Nav for small screens -->
-        <nav class="navbar navbar-expand bg-white shadow-sm  px-4 d-md-none d-flex justify-content-between">
+        <nav class="navbar navbar-expand bg-white shadow-sm   d-md-none d-flex justify-content-between">
 
 
 
             <!-- Sidebar for small screen -->
-            <div class="sidebar" id="sidebar">
-
-                <!-- Close Button -->
-                <button class="close-btn" id="close-btn" onclick="toggleSidebar()">
-                    <i class="bi bi-x-circle"></i>
-                </button>
-
-                <div class="sidebar-header d-flex align-items-center ms-3">
-                    <!-- Logo and Name -->
-                </div>
+            <div class="sidebar mt-5 py-4" id="sidebar">
 
                 <!-- Sidebar Menu -->
-                <div>
-                    <div class="container p-0 my-2">
-                        <!-- Search Bar with Icon  -->
-                        <div class="searchbar">
-                            <i class="bi bi-search px-2"></i>
-                            <input type="text" placeholder="Search instances">
-                        </div>
-                    </div>
-                    <ul class="nav flex-column">
-                        <li class="nav-item">
-                            <a class="nav-link " href="#">
-                                <i class="bi bi-house-door"></i> Dashboard
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link " href="#">
-                                <i class="bi bi-person-lines-fill"></i> Contact
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link " href="#">
-                                <i class="bi bi-file-earmark-text"></i> Invoice
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link " href="#">
-                                <i class="bi bi-bar-chart-line"></i> Sales
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link " href="#">
-                                <i class="bi bi-file-earmark-earbuds"></i> Proposal
-                            </a>
-                        </li>
+                <!-- Search -->
+                <div class="position-relative ms-3 mt-3" style="width:210px ;">
+                    <i class="bi bi-search text-muted position-absolute top-50 start-0 translate-middle-y ms-4"></i>
 
-                        <!-- dropdown menu -->
-                        <div class="dropdown">
-                            <a class="dropdown-toggle nav-link" href="#" role="button" data-bs-toggle="dropdown"
-                                aria-expanded="false">
-                                <i class="bi bi-wallet"></i> Incomes
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#"><i class="bi bi-cash-coin"></i> Earnings</a></li>
-                                <li><a class="dropdown-item" href="#"><i class="bi bi-arrow-return-left"></i>
-                                        Refunds</a></li>
-                                <li><a class="dropdown-item" href="#"><i class="bi bi-person-x"></i> Declients</a></li>
-                                <li><a class="dropdown-item" href="#"><i class="bi bi-wallet2"></i> Payouts</a></li>
-                            </ul>
-                        </div>
-
-                        <!-- settings -->
-                        <div class="settings ml-3">
-                            <h6 style="text-transform: uppercase; font-size: 10px;">settings</h6>
-                            <!-- setting dropdown menu -->
-                            <div class="dropdown">
-                                <a class="dropdown-toggle nav-link" href="#" role="button" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
-                                    <i class="bi bi-gear"></i> Setting
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#"><i class="bi bi-pencil-square"></i> Update</a>
-                                    </li>
-                                    <li><a class="dropdown-item" href="#"><i class="bi bi-trash"></i> Delete</a></li>
-                                    <li><a class="dropdown-item" href="#"><i class="bi bi-shield-lock"></i> Security</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <!-- help and logout -->
-                        <div class="logoutContainer">
-                            <a class="nav-link mt-4" href="#"><i class="bi bi-question-circle"></i> Help</a>
-                            <a class="nav-link" style="color:#da3b3b" href="#"><i class="bi bi-box-arrow-right"></i>
-                                Logout
-                                Account</a>
-                        </div>
-                    </ul>
+                    <input type="text" class="form-control ps-5 bg-light border-0 rounded
+                  focus-ring focus-ring-primary rounded-pill" style="height:36px ;" placeholder="Search">
                 </div>
+
+                <!-- Nav -->
+                <ul class="nav nav-pills flex-column mb-auto mt-3">
+                    <li class="nav-item"><a href="#" class="nav-link text-secondary"><i class="bi bi-house-door"></i>
+                            Dashboard</a>
+                    </li>
+                    <li><a href="#" class="nav-link text-secondary"><i class="bi bi-person-lines-fill"></i> Contact</a>
+                    </li>
+                    <li><a href="#" class="nav-link text-secondary"><i class="bi bi-file-earmark-text"></i> Invoice</a>
+                    </li>
+                    <li><a href="#" class="nav-link text-secondary"><i class="bi bi-bar-chart-line"></i> Sales</a></li>
+                    <li><a href="#" class="nav-link text-secondary"><i class="bi bi-file-earmark-earbuds"></i>
+                            Proposal</a></li>
+
+                    <!-- Dropdown -->
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle text-secondary" data-bs-toggle="dropdown">
+                            <i class="bi bi-wallet"></i> Incomes
+                        </a>
+                        <ul class="dropdown-menu ms-4 ">
+                            <li><a class="dropdown-item" href="#"><i class="bi bi-cash-coin"></i> Earnings</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="bi bi-arrow-return-left"></i> Refunds</a>
+                            </li>
+                            <li><a class="dropdown-item" href="#"><i class="bi bi-person-x"></i> Declients</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="bi bi-wallet2"></i> Payouts</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <!-- Settings -->
+                <div class="mt-5 px-4">
+                    <small class="text-uppercase text-muted fw-bold ">Settings</small>
+                    <div class="dropdown mt-2">
+                        <a href="#" class="nav-link dropdown-toggle text-secondary" data-bs-toggle="dropdown">
+                            <i class="bi bi-gear"></i> Setting
+                        </a>
+                        <ul class="dropdown-menu ms-3">
+                            <li><a class="dropdown-item" href="#"><i class="bi bi-pencil-square"></i> Update</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="bi bi-trash"></i> Delete</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="bi bi-shield-lock"></i> Security</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Help & Logout -->
+                <div class="mt-auto pb-4 p-4">
+                    <a href="#" class="nav-link text-secondary"><i class="bi bi-question-circle"></i> Help</a>
+                    <a href="#" class="nav-link text-danger"><i class="bi bi-box-arrow-right"></i> Logout</a>
+                </div>
+
             </div>
 
 
@@ -279,6 +253,7 @@
             </div>
 
         </nav>
+
 
 
 
@@ -387,13 +362,28 @@
 
         function toggleSidebar() {
             const sidebar = document.getElementById('sidebar');
-            const hamburgerBtn = document.getElementById('hamburger-btn');
-            const closeBtn = document.getElementById('close-btn');
+            const btn = document.getElementById('hamburger-btn');
 
             sidebar.classList.toggle('open');
-            hamburgerBtn.classList.toggle('d-none');
-            closeBtn.classList.toggle('d-flex');
+
+            if (sidebar.classList.contains('open')) {
+                btn.innerHTML = `<i class="bi bi-x"></i>`;
+            } else {
+                btn.innerHTML = `<i class="bi bi-list"></i>`;
+            }
         }
+
+        window.addEventListener('scroll', () => {
+            const sidebar = document.getElementById('sidebar');
+
+            if (window.scrollY > 0) {
+                sidebar.classList.remove('mt-5', 'py-5');
+            } else {
+                sidebar.classList.add('mt-5');
+            }
+        });
+
+
     </script>
 </body>
 
