@@ -18,7 +18,7 @@
             width: 280px;
             height: 100vh;
             position: fixed;
-            top: 0;
+            top: 60px;
             left: 0;
             background-color: #ffffff;
             padding-top: 60px;
@@ -68,11 +68,21 @@
             }
         }
 
-        @media (max-width: 767px) {
-             .custom-margin-left {
+        @media (max-width: 992px) {
+            .custom-margin-left {
+                margin: 0 auto;
+                padding: 0px;
 
-                padding: 20px 0px;
             }
+
+
+            .table-scroll {
+                overflow-x: auto;
+                white-space: nowrap;
+                width: 350px;
+                margin: 0 auto;
+            }
+
         }
     </style>
 
@@ -179,12 +189,12 @@
             </div>
         </nav>
         <!-- Nav for small screens -->
-        <nav class="navbar navbar-expand bg-white shadow-sm  d-md-none d-flex justify-content-between px-2">
+        <nav class="navbar navbar-expand bg-white shadow-sm  d-md-none d-flex justify-content-between ">
 
 
 
             <!-- Sidebar for small screen -->
-            <div class="sidebar  py-4 " id="sidebar" style="margin-top:70px;">
+            <div class="sidebar  py-4 " id="sidebar">
 
                 <!-- Sidebar Menu -->
                 <!-- Search -->
@@ -273,14 +283,14 @@
 
 
         <!-- Dashboard Section -->
-        <div class="p-3 p-md-4">
-            <h2 class="fw-bold text-secondary mb-4">Dashboard</h2>
+        <div class="p-md-4" >
+            <h2 class="fw-bold text-secondary mb-4 ms-2 mt-3">Dashboard</h2>
 
             <!-- Project Summary -->
-            <div class="bg-white rounded shadow-sm p-4 mb-4">
-                <h5 class="fw-semibold text-muted mb-3">Project Summary</h5>
+            <div class="bg-white rounded shadow-sm  p-md-4 mb-4">
+                <h5 class="fw-semibold text-muted mb-3 ms-3">Project Summary</h5>
 
-                <ul class="nav nav-pills mb-3" id="projectTab" role="tablist">
+                <ul class="nav nav-pills mb-3 ms-4 flex-wrap" id="projectTab" role="tablist">
                     <li class="nav-item"><a class="nav-link active" data-bs-toggle="pill" href="#ongoing">Ongoing</a>
                     </li>
                     <li class="nav-item"><a class="nav-link" data-bs-toggle="pill" href="#finished">Finished</a></li>
@@ -293,8 +303,8 @@
                 <div class="tab-content">
                     <!-- Ongoing -->
                     <div class="tab-pane fade show active" id="ongoing">
-                        <div class="table-responsive">
-                            <table class="table table-bordered align-middle text-center">
+                        <div class="table-responsive table-scroll">
+                            <table class="table table-bordered align-middle text-left p-4">
                                 <thead class="table-light">
                                     <tr>
                                         <th>Project Name</th>
